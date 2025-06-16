@@ -18,18 +18,18 @@ class MainWindow : public QMainWindow {
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() = default;
 
 private:
     void setupModel();
 
 private:
-    Ui::MainWindow *ui;
+    std::shared_ptr<Ui::MainWindow> ui;
 
 private:
-    QTreeView* treeView;
-    QStandardItemModel* model;
-    IconDelegate* iconDelegate;
+    std::shared_ptr<QTreeView> treeView;
+    std::shared_ptr<QStandardItemModel> model;
+    std::shared_ptr<IconDelegate> iconDelegate;
 
 };
 #endif // MAINWINDOW_H

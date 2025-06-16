@@ -16,19 +16,19 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow   (parent),
-    ui              (new Ui::MainWindow),
-    treeView        (new QTreeView(this)),
-    model           (new QStandardItemModel(this)),
-    iconDelegate    (new IconDelegate(this))
+    ui              (std::make_shared<Ui::MainWindow>()),
+    treeView        (std::make_shared<QTreeView>(this)),
+    model           (std::make_shared<QStandardItemModel>(this)),
+    iconDelegate    (std::make_shared<IconDelegate>(this))
 {
     ui->setupUi(this);
-    setCentralWidget(treeView);
+    setCentralWidget(treeView.get());
 
     setupModel();
 
-    treeView->setModel(model);
+    treeView->setModel(model.get());
     treeView->setHeaderHidden(true);
-    treeView->setItemDelegate(iconDelegate);
+    treeView->setItemDelegate(iconDelegate.get());
 
     setWindowTitle("Operators Tree");
     resize(600, 400);
@@ -53,11 +53,4 @@ void MainWindow::setupModel() {
 
         model->appendRow(countryItem);
     }
-}
-
-MainWindow::~MainWindow() {
-    delete ui;
-    delete treeView;
-    delete model;
-    delete iconDelegate;
 }

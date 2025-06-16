@@ -31,10 +31,10 @@ QVector<Country> SQLDataProvider::loadData() {
         country.code = countryCode;
         country.name = countryName;
 
-        if ( countryMcc.isEmpty() && country.mccs.contains(countryMcc) ) continue;
+        if ( countryMcc.isEmpty() || country.mccs.contains(countryMcc) ) continue;
         country.mccs << countryMcc;
 
-        if ( operatorName.isEmpty() && mnc.isEmpty() ) continue;
+        if ( operatorName.isEmpty() || mnc.isEmpty() ) continue;
         country.operators.append({ operatorName, countryMcc, mnc });
     }
 
