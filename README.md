@@ -1,0 +1,1 @@
+A small introduction to Qt Widgets. This application displays a list of mobile operators for each country. Data is stored in .db file. Config.json is used to change a storage type. For now only .db file is possible to use.
